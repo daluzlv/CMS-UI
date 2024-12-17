@@ -1,0 +1,52 @@
+
+<div class="flex items-center justify-center min-h-screen bg-gray-100">
+    <div class="w-full max-w-sm bg-white p-6 rounded-lg shadow-md">
+      <h2 class="text-2xl font-bold text-center mb-6 text-gray-700">Login</h2>
+      
+      <!-- Formulário -->
+      <form (ngSubmit)="onSubmit()">
+        <div class="mb-4">
+          <label for="email" class="block text-sm font-medium text-gray-600 mb-1">E-mail</label>
+          <input 
+            pInputText 
+            id="email" 
+            type="text" 
+            placeholder="Digite seu e-mail" 
+            class="w-full border border-gray-300 rounded-md p-2"
+            [(ngModel)]="email"
+            name="email"
+            required
+          />
+        </div>
+        
+        <div class="mb-6">
+          <label for="password" class="block text-sm font-medium text-gray-600 mb-1">Senha</label>
+          <input 
+            pInputText 
+            id="password" 
+            type="password" 
+            placeholder="Digite sua senha" 
+            class="w-full border border-gray-300 rounded-md p-2"
+            [(ngModel)]="password"
+            name="password"
+            required
+          />
+        </div>
+
+        <!-- Botão -->
+        <p-button
+          type="submit" 
+          label="Entrar" 
+          class="w-full p-button-rounded p-button-primary"
+        ></p-button>
+
+        <!-- Feedback -->
+        <div *ngIf="errorMessage" class="text-red-600 mt-4 text-center">
+          {{ errorMessage }}
+        </div>
+        <div *ngIf="successMessage" class="text-green-600 mt-4 text-center">
+          {{ successMessage }}
+        </div>
+      </form>
+    </div>
+  </div>
