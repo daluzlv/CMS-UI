@@ -1,36 +1,46 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpErrorResponse } from '@angular/common/http';
 import { InputText } from 'primeng/inputtext';
 import { Button } from 'primeng/button';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-login',
   standalone: true,
   imports: [CommonModule, InputText, Button, FormsModule],
   templateUrl: './login.component.html',
-  styles: [],
+  styles: []
 })
 export class LoginComponent {
   email: string = '';
   password: string = '';
   errorMessage: string = '';
-  successMessage: string = '';  
+  successMessage: string = '';
 
-  constructor(private authService: AuthService) {}
+  constructor(
+    private authService: AuthService,
+    private messageService: MessageService
+  ) {}
 
   onSubmit() {
     this.authService.login(this.email, this.password).subscribe({
       next: (response: any) => {
-        this.successMessage = 'Login realizado com sucesso!';
-        this.errorMessage = '';
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Sucesso',
+          detail: 'Login realizado com sucesso!',
+        });
         console.log('Resposta do servidor:', response);
       },
       error: (error: HttpErrorResponse) => {
-        this.errorMessage = 'Erro ao fazer login. Verifique suas credenciais.';
-        this.successMessage = '';
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Erro',
+          detail: 'Erro ao fazer login. Verifique suas credenciais.',
+        });
         console.error('Erro:', error);
       },
     });

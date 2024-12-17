@@ -17,4 +17,8 @@ export class AuthService {
 
     return this.http.post<any>(url, payload);
   }
+
+  updateFullName(fullName: string): Observable<any> {
+    return this.http.put(`${this.baseUrl}/user/`, { fullName });
+  }
 }
