@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { Button } from 'primeng/button';
 import { Menubar } from 'primeng/menubar';
-import { AuthService } from '../services/auth.service';
 import { Router, RouterLink } from '@angular/router';
+
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-home',

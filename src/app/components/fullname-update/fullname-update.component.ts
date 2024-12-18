@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { AuthService } from '../services/auth.service';
-import { MessageService } from 'primeng/api';
-
 import { FormsModule } from '@angular/forms';
+
+import { MessageService } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
+
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-fullname-update',

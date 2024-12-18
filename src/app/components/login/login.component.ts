@@ -1,12 +1,14 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
+
 import { InputText } from 'primeng/inputtext';
 import { Button } from 'primeng/button';
 import { FormsModule } from '@angular/forms';
-import { AuthService } from '../services/auth.service';
 import { MessageService } from 'primeng/api';
-import { Token } from '../models/auth/token.model';
+
+import { AuthService } from '../../services/auth.service';
+import { Token } from '../../models/token.model';
 
 @Component({
   selector: 'app-login',
