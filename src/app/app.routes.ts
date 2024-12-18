@@ -10,6 +10,6 @@ export const routes: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'user-update', component: FullNameUpdateComponent, canActivate: [AuthGuard] },
     { path: 'home', component: HomeComponent },
-    { path: 'post', component: PostComponent },
+    { path: 'post/:id', component: PostComponent },
     { path: '**', redirectTo: 'home' }
 ]

@@ -5,6 +5,7 @@
     *ngFor="let post of postList"
     [post]="post"
     imageUrl="https://via.placeholder.com/600x400"
+    (click)="postRedirect(post.id)"
   ></app-post-card>
 </div>
 
