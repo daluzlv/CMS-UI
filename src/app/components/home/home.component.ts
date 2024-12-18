@@ -48,8 +48,7 @@ export class HomeComponent implements OnInit {
       ];
 
     this.postService.get().subscribe({
-      next: (response: Post[]) => {
-        debugger
+      next: (response: Post[]) => {        
         this.postList = response;
       },
       error: (error: HttpErrorResponse) => {

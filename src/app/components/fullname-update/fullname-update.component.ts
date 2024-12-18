@@ -23,8 +23,6 @@ export class FullNameUpdateComponent {
   ) {}
 
   updateName(): void {
-    debugger;
-
     if (!this.fullName.trim()) {
       this.messageService.add({
         severity: 'warn',
