@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 import { CardModule } from 'primeng/card';
 
@@ -7,7 +8,7 @@ import { Post } from '../../models/post.model';
 @Component({
   selector: 'app-post-card',
   standalone: true,
-  imports: [CardModule],
+  imports: [CardModule, CommonModule],
   templateUrl: './post-card.component.html',
   styleUrl: './post-card.component.css',
 })

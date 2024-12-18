@@ -1,24 +1,22 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router, RouterLink } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 import { Menubar } from 'primeng/menubar';
 import { Button } from 'primeng/button';
 import { AuthService } from '../../services/auth.service';
 
-import { PostCardComponent } from '../post-card/post-card.component';
-
 @Component({
   selector: 'app-layout',
   standalone: true,
-  imports: [CommonModule, Button, Menubar, RouterLink, PostCardComponent],
+  imports: [CommonModule, Button, Menubar, RouterModule],
   templateUrl: './layout.component.html',
   styleUrl: './layout.component.css'
 })
 export class LayoutComponent {
   menuItems = [
-    { label: 'Home', icon: 'pi pi-home', routerLink: '/home' },
-    { label: 'Login', icon: 'pi pi-user', routerLink: '/login' },
+    { label: 'Home', icon: 'pi pi-home', routerLink: ['/home'] },
+    { label: 'Login', icon: 'pi pi-user', routerLink: ['/login'] },
   ];
   
     constructor(
@@ -33,7 +31,7 @@ export class LayoutComponent {
           {
             label: 'Atualizar usuário',
             icon: 'pi pi-user',
-            routerLink: '/user-update',
+            routerLink: ['/user-update'],
           },
         ];
     }

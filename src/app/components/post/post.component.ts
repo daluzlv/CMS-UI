@@ -28,7 +28,14 @@ import { PostService } from '../../services/post.service';
   ],
 })
 export class PostComponent implements OnInit {
-  post!: Post;
+  post: Post = {
+    bannerUrl: '',
+    content: '',
+    createdAt: new Date(),
+    fullName: '',
+    id: '',
+    title: '',
+  };
 
   comments: PostComment[] = [
     {

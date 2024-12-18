@@ -1,7 +1,8 @@
 <p-card class="max-w-3xl mx-auto shadow-lg cursor-pointer">
   <ng-template pTemplate="header">
     <img
-      [src]="imageUrl"
+      *ngIf="!!post.bannerUrl"
+      [src]="post.bannerUrl"
       alt="Blog Post Image"
       class="w-full h-64 object-cover rounded-t-lg"
     />
