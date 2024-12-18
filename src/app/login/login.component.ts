@@ -6,6 +6,7 @@ import { Button } from 'primeng/button';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 import { MessageService } from 'primeng/api';
+import { Token } from '../models/auth/token.model';
 
 @Component({
   selector: 'app-login',
@@ -27,12 +28,15 @@ export class LoginComponent {
 
   onSubmit() {
     this.authService.login(this.email, this.password).subscribe({
-      next: (response: any) => {
+      next: (response: Token) => {
+        this.authService.setToken(response);
+
         this.messageService.add({
           severity: 'success',
           summary: 'Sucesso',
           detail: 'Login realizado com sucesso!',
         });
+
         console.log('Resposta do servidor:', response);
       },
       error: (error: HttpErrorResponse) => {

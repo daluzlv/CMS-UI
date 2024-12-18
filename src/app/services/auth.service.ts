@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
+import { Token } from '../models/auth/token.model';
 
 @Injectable({
   providedIn: 'root',
@@ -20,5 +21,17 @@ export class AuthService {
 
   updateFullName(fullName: string): Observable<any> {
     return this.http.put(`${this.baseUrl}/user/`, { fullName });
+  }
+
+  setToken(token: Token) {
+    localStorage.setItem('auth_token', token.accessToken);
+  }
+
+  logout(): void {
+    localStorage.removeItem('auth_token');
+  }
+
+  isLoggedIn(): boolean {
+    return !!localStorage.getItem('auth_token');
   }
 }
