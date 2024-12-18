@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 
 import { environment } from '../../environments/environment';
 
@@ -11,6 +11,8 @@ import { Token } from '../models/token.model';
 })
 export class AuthService {
   private baseUrl = environment.apiUrl;
+  private loginInfo = new Subject<boolean>();
+  loginInfo$ = this.loginInfo.asObservable();
 
   constructor(private http: HttpClient) {}
 
@@ -31,9 +33,14 @@ export class AuthService {
 
   logout(): void {
     localStorage.removeItem('auth_token');
+    this.updateLoginSubject(false);   
   }
 
   isLoggedIn(): boolean {
     return !!localStorage.getItem('auth_token');
+  }
+
+  updateLoginSubject(info: boolean) {
+    this.loginInfo.next(info);
   }
 }

@@ -9,6 +9,7 @@ import { MessageService } from 'primeng/api';
 
 import { AuthService } from '../../services/auth.service';
 import { Token } from '../../models/token.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -25,7 +26,8 @@ export class LoginComponent {
 
   constructor(
     private authService: AuthService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private router: Router
   ) {}
 
   onSubmit() {
@@ -39,7 +41,8 @@ export class LoginComponent {
           detail: 'Login realizado com sucesso!',
         });
 
-        console.log('Resposta do servidor:', response);
+        this.authService.updateLoginSubject(true);        
+        this.router.navigate(['/home']);
       },
       error: (error: HttpErrorResponse) => {
         this.messageService.add({

@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router, RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 
-import { Button } from 'primeng/button';
-import { Menubar } from 'primeng/menubar';
 import { MessageService } from 'primeng/api';
 
 import { AuthService } from '../../services/auth.service';
@@ -16,10 +14,10 @@ import { Post } from '../../models/post.model';
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, Button, Menubar, RouterLink, PostCardComponent],
+  imports: [CommonModule, PostCardComponent],
   templateUrl: './home.component.html',
   styles: [],
-  providers: [MessageService, AuthService, PostService, Router],
+  providers: [MessageService, AuthService, PostService],
 })
 export class HomeComponent implements OnInit {
   postList: Post[] = [];
@@ -47,6 +45,6 @@ export class HomeComponent implements OnInit {
   }
 
   postRedirect(id: string) {
-    this.router.navigateByUrl(`/post/${id}`);
+    this.router.navigate(['/post', id]);
   }
 }
