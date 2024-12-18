@@ -4,10 +4,14 @@ import { Router, RouterLink } from '@angular/router';
 
 import { Button } from 'primeng/button';
 import { Menubar } from 'primeng/menubar';
+import { MessageService } from 'primeng/api';
 
 import { AuthService } from '../../services/auth.service';
 
 import { PostComponent } from '../post/post.component';
+import { PostService } from '../../services/post.service';
+import { Post } from '../../models/post.model';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-home',
@@ -15,6 +19,7 @@ import { PostComponent } from '../post/post.component';
   imports: [CommonModule, Button, Menubar, RouterLink, PostComponent],
   templateUrl: './home.component.html',
   styles: [],
+  providers: [MessageService, AuthService, PostService],
 })
 export class HomeComponent implements OnInit {
   menuItems = [
@@ -22,11 +27,17 @@ export class HomeComponent implements OnInit {
     { label: 'Login', icon: 'pi pi-user', routerLink: '/login' },
   ];
 
-  constructor(private router: Router, private authService: AuthService) {}
+  postList: Post[] = [];
+
+  constructor(
+    private router: Router,
+    private authService: AuthService,
+    private postService: PostService,
+    private messageService: MessageService
+  ) {}
 
   ngOnInit(): void {
-    const isLogged = this.isLogged();
-    if (isLogged)
+    if (this.isLogged())
       this.menuItems = [
         ...this.menuItems,
         {
@@ -35,6 +46,21 @@ export class HomeComponent implements OnInit {
           routerLink: '/user-update',
         },
       ];
+
+    this.postService.get().subscribe({
+      next: (response: Post[]) => {
+        debugger
+        this.postList = response;
+      },
+      error: (error: HttpErrorResponse) => {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Erro',
+          detail: 'Erro ao recuperar as postagens.',
+        });
+        console.error('Erro:', error);
+      },
+    });
   }
 
   isLogged = (): boolean => this.authService.isLoggedIn();

@@ -15,7 +15,7 @@ import { Token } from '../../models/token.model';
   standalone: true,
   imports: [CommonModule, InputText, Button, FormsModule],
   templateUrl: './login.component.html',
-  styles: []
+  styles: [],
 })
 export class LoginComponent {
   email: string = '';

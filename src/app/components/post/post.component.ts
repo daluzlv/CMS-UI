@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 
 import { CardModule } from 'primeng/card';
+import { Post } from '../../models/post.model';
 
 @Component({
   selector: 'app-post',
@@ -10,9 +11,10 @@ import { CardModule } from 'primeng/card';
   styleUrl: './post.component.css',
 })
 export class PostComponent {
-  @Input() title!: string;
-  @Input() fullName!: string;
-  @Input() date!: string;
+  @Input() post!: Post;
   @Input() imageUrl!: string;
-  @Input() content!: string;
+
+  formattedDate(): string {
+    return new Date(this.post.createdAt).toLocaleDateString('pt-BR');
+  }
 }
