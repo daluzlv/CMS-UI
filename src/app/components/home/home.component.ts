@@ -8,7 +8,7 @@ import { MessageService } from 'primeng/api';
 
 import { AuthService } from '../../services/auth.service';
 
-import { PostComponent } from '../post/post.component';
+import { PostCardComponent } from '../post-card/post-card.component';
 import { PostService } from '../../services/post.service';
 import { Post } from '../../models/post.model';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -16,7 +16,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, Button, Menubar, RouterLink, PostComponent],
+  imports: [CommonModule, Button, Menubar, RouterLink, PostCardComponent],
   templateUrl: './home.component.html',
   styles: [],
   providers: [MessageService, AuthService, PostService],

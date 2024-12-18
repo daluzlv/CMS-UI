@@ -4,13 +4,13 @@ import { CardModule } from 'primeng/card';
 import { Post } from '../../models/post.model';
 
 @Component({
-  selector: 'app-post',
+  selector: 'app-post-card',
   standalone: true,
   imports: [CardModule],
-  templateUrl: './post.component.html',
-  styleUrl: './post.component.css',
+  templateUrl: './post-card.component.html',
+  styleUrl: './post-card.component.css',
 })
-export class PostComponent {
+export class PostCardComponent {
   @Input() post!: Post;
   @Input() imageUrl!: string;
 
