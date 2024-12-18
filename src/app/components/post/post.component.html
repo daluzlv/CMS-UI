@@ -1,0 +1,60 @@
+<div class="p-6">
+  <p-card class="max-w-3xl mx-auto shadow-lg">
+    <ng-template pTemplate="header">
+      <img
+        src="https://via.placeholder.com/600x400"
+        alt="Blog Post Image"
+        class="w-full h-64 object-cover rounded-t-lg"
+      />
+    </ng-template>
+
+    <div class="p-4">
+      <h2 class="text-2xl font-bold mb-2">{{ post.title }}</h2>
+      <div class="flex items-center text-sm text-gray-500 mb-4">
+        <span class="mr-4 flex items-center">
+          <i class="pi pi-user mr-2"></i> {{ post.fullName }}
+        </span>
+        <span class="flex items-center">
+          <i class="pi pi-calendar mr-2"></i> {{ post.createdAt }}
+        </span>
+      </div>
+      <p class="text-gray-700 leading-relaxed mb-6">
+        {{ post.content }}
+      </p>
+
+      <!-- Input para enviar comentários -->
+      <div class="mt-4">
+        <h3 class="text-xl font-semibold mb-2">Deixe um comentário:</h3>
+        <div class="flex gap-2">
+          <input
+            type="text"
+            pInputText
+            class="p-inputtext p-component w-full"
+            [disabled]="!isLogged()"
+            [(ngModel)]="newComment"
+            [placeholder]="inputCommentPlaceholder()"
+          />
+          <p-button
+            type="button"
+            label="Enviar"
+            class="p-button-outlined"
+          ></p-button>
+        </div>
+      </div>
+
+      <!-- Listagem de comentários -->
+      <div class="mt-6">
+        <h3 class="text-xl font-semibold mb-2">Comentários:</h3>
+        <div *ngIf="comments.length === 0" class="text-gray-500">
+          Nenhum comentário ainda. Seja o primeiro!
+        </div>
+        <div *ngFor="let comment of comments" class="mb-3 border-b pb-2">
+          <p class="text-gray-800">
+            <strong>{{ comment.fullName }}</strong
+            >: {{ comment.content }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </p-card>
+</div>
