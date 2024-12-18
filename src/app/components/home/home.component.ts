@@ -22,31 +22,14 @@ import { HttpErrorResponse } from '@angular/common/http';
   providers: [MessageService, AuthService, PostService],
 })
 export class HomeComponent implements OnInit {
-  menuItems = [
-    { label: 'Home', icon: 'pi pi-home', routerLink: '/home' },
-    { label: 'Login', icon: 'pi pi-user', routerLink: '/login' },
-  ];
-
   postList: Post[] = [];
 
   constructor(
-    private router: Router,
-    private authService: AuthService,
     private postService: PostService,
     private messageService: MessageService
   ) {}
 
   ngOnInit(): void {
-    if (this.isLogged())
-      this.menuItems = [
-        ...this.menuItems,
-        {
-          label: 'Atualizar usuário',
-          icon: 'pi pi-user',
-          routerLink: '/user-update',
-        },
-      ];
-
     this.postService.get().subscribe({
       next: (response: Post[]) => {        
         this.postList = response;
@@ -60,12 +43,5 @@ export class HomeComponent implements OnInit {
         console.error('Erro:', error);
       },
     });
-  }
-
-  isLogged = (): boolean => this.authService.isLoggedIn();
-
-  onLogout() {
-    this.authService.logout();
-    this.router.navigate(['/login']);
   }
 }

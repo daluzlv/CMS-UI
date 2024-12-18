@@ -4,15 +4,15 @@ import { RouterOutlet } from '@angular/router';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 
-import { PostService } from './services/post.service';
+import { LayoutComponent } from "./components/layout/layout.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, ToastModule],
+  imports: [RouterOutlet, ToastModule, LayoutComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
-  providers: [MessageService, PostService],
+  providers: [MessageService],
 })
 export class AppComponent {
   title = 'CMS-UI';

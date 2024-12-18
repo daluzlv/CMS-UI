@@ -1,29 +1,10 @@
-<!-- Container Principal -->
-<div class="min-h-screen flex flex-col bg-gray-100">
-  <!-- Cabeçalho com PrimeNG Menubar -->
-  <p-menubar [model]="menuItems">
-    <ng-template #start>
-      <span class="text-2xl font-bold mr-20">CMS</span>
-    </ng-template>
-    <ng-template *ngIf="isLogged()" #end>
-      <p-button
-        type="button"
-        label="Logout"
-        icon="pi pi-sign-out"
-        severity="danger"
-        (click)="onLogout()"
-      ></p-button>
-    </ng-template>
-  </p-menubar>
-
-  <!-- Conteúdo Principal -->
-  <div class="p-6">
-    <main class="flex flex-col flex-grow container mx-auto p-6 bg-white shadow-lg rounded-md gap-10">
-      <app-post-card
-        *ngFor="let post of postList"
-        [post]="post"
-        imageUrl="https://via.placeholder.com/600x400"
-      ></app-post-card>
-    </main>
-  </div>
+<div
+  class="flex flex-col flex-grow container mx-auto p-6 bg-white shadow-lg rounded-md gap-10"
+>
+  <app-post-card
+    *ngFor="let post of postList"
+    [post]="post"
+    imageUrl="https://via.placeholder.com/600x400"
+  ></app-post-card>
 </div>
+

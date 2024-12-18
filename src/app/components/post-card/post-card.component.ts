@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 
 import { CardModule } from 'primeng/card';
+
 import { Post } from '../../models/post.model';
 
 @Component({
