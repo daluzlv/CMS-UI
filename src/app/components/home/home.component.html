@@ -5,7 +5,7 @@
     <ng-template #start>
       <span class="text-2xl font-bold mr-20">CMS</span>
     </ng-template>
-    <ng-template #end>
+    <ng-template *ngIf="isLogged()" #end>
       <p-button
         type="button"
         label="Logout"
@@ -17,21 +17,15 @@
   </p-menubar>
 
   <!-- Conteúdo Principal -->
-  <main
-    class="flex-grow container mx-auto p-6 bg-white shadow-lg rounded-md mt-6"
-  >
-    <h2 class="text-2xl font-semibold text-gray-800 mb-4">Bem-vindo à Home!</h2>
-    <p class="text-gray-600 mb-6">
-      Esta é a tela principal da aplicação construída com Angular 18, PrimeNG 18
-      e Tailwind CSS.
-    </p>
-    <p-button
-      type="button"
-      label="Explorar Funcionalidades"
-      icon="pi pi-check"
-      severity="success"
-      routerLink="/login"
-    ></p-button>
-  </main>
-
+  <div class="p-6">
+    <main class="flex-grow container mx-auto p-6 bg-white shadow-lg rounded-md">
+      <app-post
+        title="Explorando o p-card no Angular com PrimeNG"
+        fullName="João Silva"
+        date="18 de dezembro de 2024"
+        imageUrl="https://via.placeholder.com/600x400"
+        content="O componente p-card do PrimeNG é incrivelmente versátil e fácil de usar para criar layouts bonitos e organizados."
+      ></app-post>
+    </main>
+  </div>
 </div>

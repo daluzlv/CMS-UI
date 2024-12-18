@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+
 import { environment } from '../../environments/environment';
-import { Token } from '../models/auth/token.model';
+
+import { Token } from '../models/token.model';
 
 @Injectable({
   providedIn: 'root',

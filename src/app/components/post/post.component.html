@@ -1,0 +1,24 @@
+<p-card class="max-w-3xl mx-auto shadow-lg">
+  <ng-template pTemplate="header">
+    <img
+      [src]="imageUrl"
+      alt="Blog Post Image"
+      class="w-full h-64 object-cover rounded-t-lg"
+    />
+  </ng-template>
+
+  <div class="p-4">
+    <h2 class="text-2xl font-bold mb-2">{{ title }}</h2>
+    <div class="flex items-center text-sm text-gray-500 mb-4">
+      <span class="mr-4 flex items-center">
+        <i class="pi pi-user mr-2"></i> {{ fullName }}
+      </span>
+      <span class="flex items-center">
+        <i class="pi pi-calendar mr-2"></i> {{ date }}
+      </span>
+    </div>
+    <p class="text-gray-500 leading-relaxed">
+      {{ content }}
+    </p>
+  </div>
+</p-card>
