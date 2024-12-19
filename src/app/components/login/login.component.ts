@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 import { InputText } from 'primeng/inputtext';
 import { Button } from 'primeng/button';
-import { FormsModule } from '@angular/forms';
 import { MessageService } from 'primeng/api';
+import { DividerModule } from 'primeng/divider';
 
 import { AuthService } from '../../services/auth.service';
 import { Token } from '../../models/token.model';
@@ -14,7 +15,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, InputText, Button, FormsModule],
+  imports: [CommonModule, InputText, Button, FormsModule, DividerModule],
   templateUrl: './login.component.html',
   styles: [],
 })
@@ -53,5 +54,9 @@ export class LoginComponent {
         console.error('Erro:', error);
       },
     });
+  }
+
+  register() {
+    this.router.navigate(['/register']);
   }
 }

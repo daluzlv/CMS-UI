@@ -1,12 +1,13 @@
 import { Component, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 import { Menubar } from 'primeng/menubar';
 import { Button } from 'primeng/button';
-import { AuthService } from '../../services/auth.service';
 import { MenuItem } from 'primeng/api';
-import { Subscription } from 'rxjs';
+
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-layout',

@@ -5,6 +5,7 @@ import { Observable, Subject } from 'rxjs';
 import { environment } from '../../environments/environment';
 
 import { Token } from '../models/token.model';
+import { Register } from '../models/register.model';
 
 @Injectable({
   providedIn: 'root',
@@ -42,5 +43,11 @@ export class AuthService {
 
   updateLoginSubject(info: boolean) {
     this.loginInfo.next(info);
+  }
+
+  register(registerData: Register): Observable<any> {
+    const url = `${this.baseUrl}/auth/register`;   
+
+    return this.http.post<any>(url, registerData);
   }
 }
