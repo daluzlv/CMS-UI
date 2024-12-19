@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -16,7 +16,7 @@ import { AuthService } from '../../services/auth.service';
   templateUrl: './layout.component.html',
   styleUrl: './layout.component.css',
 })
-export class LayoutComponent implements OnDestroy {
+export class LayoutComponent implements OnInit, OnDestroy {
   menuItems: MenuItem[] = [
     {
       label: 'Home',
@@ -39,7 +39,7 @@ export class LayoutComponent implements OnDestroy {
   loginSubscription!: Subscription;
 
   constructor(private router: Router, private authService: AuthService) {
-    this.loginSubscription = this.authService.loginInfo$.subscribe(info => {
+    this.loginSubscription = this.authService.loginInfo$.subscribe((info) => {
       if (info) {
         this.menuItems[1].visible = false;
         this.menuItems[2].visible = true;
@@ -50,7 +50,19 @@ export class LayoutComponent implements OnDestroy {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.updateMenuBar(this.isLogged());
+  }
+
+  updateMenuBar(info: boolean): void {
+    if (info) {
+      this.menuItems[1].visible = false;
+      this.menuItems[2].visible = true;
+    } else {
+      this.menuItems[1].visible = true;
+      this.menuItems[2].visible = false;
+    }
+  }
 
   isLogged = (): boolean => this.authService.isLoggedIn();
 
