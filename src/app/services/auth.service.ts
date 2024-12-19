@@ -59,7 +59,7 @@ export class AuthService {
     return null;
   }
 
-  private getToken() {
+  getToken() {
     return localStorage.getItem('auth_token');
   }
 }
