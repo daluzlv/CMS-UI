@@ -1,4 +1,9 @@
 export interface Token {
-    accessToken: string;
-  }
-  
+  accessToken: string;
+}
+
+export interface DecodedToken  {
+  sub: string,
+  iss: string,
+  email: string,
+}

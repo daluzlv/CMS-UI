@@ -1,0 +1,48 @@
+<div class="flex items-center justify-center min-h-screen bg-gray-100">
+    <div class="w-full max-w-md bg-white p-6 rounded-lg shadow-md">
+      <h2 class="text-2xl font-bold text-center mb-6 text-gray-700">
+        Atualizar Nome Completo
+      </h2>
+  
+      <!-- Formulário -->
+      <form [formGroup]="updateUserNameForm" (ngSubmit)="onSubmit()">
+        <!-- Nome Completo -->
+        <div class="mb-6">
+          <label for="fullName" class="block text-sm font-medium text-gray-600 mb-1">
+            Nome Completo
+          </label>
+          <input 
+            pInputText 
+            id="fullName" 
+            type="text" 
+            placeholder="Digite seu nome completo" 
+            class="w-full border border-gray-300 rounded-md p-2"
+            formControlName="fullName"
+          />
+          <span *ngIf="hasError('fullName', 'required')" class="text-red-600 text-sm">
+            O nome completo é obrigatório.
+          </span>
+          <span *ngIf="hasError('fullName', 'minlength')" class="text-red-600 text-sm">
+            O nome deve ter no mínimo 3 caracteres.
+          </span>
+        </div>
+  
+        <!-- Botão -->
+        <p-button 
+          type="submit" 
+          label="Atualizar Nome"
+          severity="success"
+          styleClass="w-full p-button-rounded p-button-primary"
+        ></p-button>
+  
+        <!-- Feedback -->
+        <div *ngIf="successMessage" class="text-green-600 mt-4 text-center">
+          {{ successMessage }}
+        </div>
+        <div *ngIf="errorMessage" class="text-red-600 mt-4 text-center">
+          {{ errorMessage }}
+        </div>
+      </form>
+    </div>
+  </div>
+  

@@ -2,9 +2,11 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, Subject } from 'rxjs';
 
+import { jwtDecode } from 'jwt-decode';
+
 import { environment } from '../../environments/environment';
 
-import { Token } from '../models/token.model';
+import { DecodedToken, Token } from '../models/token.model';
 import { Register } from '../models/register.model';
 
 @Injectable({
@@ -34,7 +36,7 @@ export class AuthService {
 
   logout(): void {
     localStorage.removeItem('auth_token');
-    this.updateLoginSubject(false);   
+    this.updateLoginSubject(false);
   }
 
   isLoggedIn(): boolean {
@@ -46,8 +48,18 @@ export class AuthService {
   }
 
   register(registerData: Register): Observable<any> {
-    const url = `${this.baseUrl}/auth/register`;   
+    const url = `${this.baseUrl}/auth/register`;
 
     return this.http.post<any>(url, registerData);
+  }
+
+  getDecodedToken(): DecodedToken | null {
+    if (this.isLoggedIn()) return jwtDecode(this.getToken()!);
+
+    return null;
+  }
+
+  private getToken() {
+    return localStorage.getItem('auth_token');
   }
 }
