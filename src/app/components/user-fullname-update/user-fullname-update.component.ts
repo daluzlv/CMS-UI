@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import { Button } from 'primeng/button';
 import { InputText } from 'primeng/inputtext';
 import { MessageService } from 'primeng/api';
+import { FloatLabel } from 'primeng/floatlabel';
 
 import { UserService } from '../../services/user.service';
 import { AuthService } from '../../services/auth.service';
@@ -17,7 +18,7 @@ import { User } from '../../models/user.model';
 @Component({
   selector: 'app-update-fullname',
   standalone: true,
-  imports: [CommonModule, InputText, Button, ReactiveFormsModule],
+  imports: [CommonModule, InputText, FloatLabel, Button, ReactiveFormsModule],
   templateUrl: './user-fullname-update.component.html',
   styleUrls: ['./user-fullname-update.component.css'],
 })

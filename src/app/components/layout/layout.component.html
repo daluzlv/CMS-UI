@@ -1,6 +1,5 @@
 <!-- Container Principal -->
 <div class="min-h-screen flex flex-col bg-gray-100">
-  <!-- Cabeçalho com PrimeNG Menubar -->
   <p-menubar [model]="menuItems">
     <ng-template #start>
       <span class="text-2xl font-bold mr-20">CMS</span>
@@ -16,9 +15,9 @@
     </ng-template>
   </p-menubar>
 
-  <!-- Conteúdo Principal -->
-  <div class="px-20 py-6">
-    <main>
+  
+  <div class="px-20 py-6 flex flex-col h-full grow">
+    <main class="flex-grow">
       <ng-content></ng-content>
     </main>
   </div>
