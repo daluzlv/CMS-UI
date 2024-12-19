@@ -19,18 +19,21 @@
           required
         />
         <span
-          *ngIf="hasError('email', 'required')"
+          *ngIf="hasError('email', 'required') && registerForm.touched"
           class="text-red-600 text-sm"
         >
           O email é obrigatório.
         </span>
-        <span *ngIf="hasError('email', 'email')" class="text-red-600 text-sm">
+        <span
+          *ngIf="hasError('email', 'email') && registerForm.touched"
+          class="text-red-600 text-sm"
+        >
           Insira um email válido.
         </span>
       </div>
 
       <!-- Senha -->
-      <div class="mb-6">
+      <div class="mb-4">
         <label for="senha" class="block text-sm font-medium text-gray-600 mb-1">
           Senha
         </label>
@@ -47,19 +50,19 @@
           required
         />
         <span
-          *ngIf="hasError('senha', 'required')"
+          *ngIf="hasError('senha', 'required') && registerForm.touched"
           class="text-red-600 text-sm"
         >
           A senha é obrigatória.
         </span>
         <span
-          *ngIf="hasError('senha', 'minlength')"
+          *ngIf="hasError('senha', 'minlength') && registerForm.touched"
           class="text-red-600 text-sm"
         >
           A senha deve ter no mínimo 8 caracteres.
         </span>
         <span
-          *ngIf="hasError('senha', 'passwordStrength')"
+          *ngIf="hasError('senha', 'passwordStrength') && registerForm.touched"
           class="text-red-600 text-sm"
         >
           A senha deve conter letra maiúscula, letra minúscula, número e

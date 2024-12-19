@@ -19,10 +19,10 @@
             class="w-full border border-gray-300 rounded-md p-2"
             formControlName="fullName"
           />
-          <span *ngIf="hasError('fullName', 'required')" class="text-red-600 text-sm">
+          <span *ngIf="hasError('fullName', 'required') && updateUserNameForm.touched" class="text-red-600 text-sm">
             O nome completo é obrigatório.
           </span>
-          <span *ngIf="hasError('fullName', 'minlength')" class="text-red-600 text-sm">
+          <span *ngIf="hasError('fullName', 'minlength') && updateUserNameForm.touched" class="text-red-600 text-sm">
             O nome deve ter no mínimo 3 caracteres.
           </span>
         </div>
