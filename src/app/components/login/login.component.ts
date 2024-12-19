@@ -4,6 +4,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 
 import { InputText } from 'primeng/inputtext';
+import { FloatLabel } from 'primeng/floatlabel';
 import { Button } from 'primeng/button';
 import { MessageService } from 'primeng/api';
 import { DividerModule } from 'primeng/divider';
@@ -15,7 +16,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, InputText, Button, FormsModule, DividerModule],
+  imports: [CommonModule, FloatLabel, InputText, Button, FormsModule, DividerModule],
   templateUrl: './login.component.html',
   styles: [],
 })

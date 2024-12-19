@@ -5,19 +5,19 @@
     <form (ngSubmit)="onSubmit()" [formGroup]="registerForm">
       <!-- Email -->
       <div class="mb-4">
-        <label for="email" class="block text-sm font-medium text-gray-600 mb-1">
-          Email
-        </label>
-        <input
-          pInputText
-          id="email"
-          type="email"
-          placeholder="Digite seu email"
-          class="w-full border border-gray-300 rounded-md p-2"
-          name="email"
-          formControlName="email"
-          required
-        />
+        <p-floatlabel variant="on">
+          <input
+            pInputText
+            id="email"
+            type="email"
+            class="w-full border border-gray-300 rounded-md p-2"
+            name="email"
+            formControlName="email"
+            required
+          />
+          <label for="email">E-mail</label>
+        </p-floatlabel>
+
         <span
           *ngIf="hasError('email', 'required') && registerForm.touched"
           class="text-red-600 text-sm"
@@ -34,21 +34,21 @@
 
       <!-- Senha -->
       <div class="mb-4">
-        <label for="senha" class="block text-sm font-medium text-gray-600 mb-1">
-          Senha
-        </label>
-        <input
-          pInputText
-          id="senha"
-          type="password"
-          name="password"
-          formControlName="password"
-          placeholder="Digite sua senha"
-          class="w-full border border-gray-300 rounded-md p-2"
-          pTooltip="A senha deve conter letra maiúscula, letra minúscula, número e caractere especial."
-          tooltipPosition="top"
-          required
-        />
+        <p-floatlabel variant="on">
+          <input
+            pInputText
+            id="senha"
+            type="password"
+            name="password"
+            formControlName="password"
+            class="w-full border border-gray-300 rounded-md p-2"
+            pTooltip="A senha deve conter letra maiúscula, letra minúscula, número e caractere especial."
+            tooltipPosition="top"
+            required
+          />
+          <label for="password">Senha</label>
+        </p-floatlabel>
+
         <span
           *ngIf="hasError('senha', 'required') && registerForm.touched"
           class="text-red-600 text-sm"
@@ -71,18 +71,17 @@
       </div>
 
       <div class="mb-6">
-        <label for="senha" class="block text-sm font-medium text-gray-600 mb-1">
-          Confirmar senha
-        </label>
-        <input
-          pInputText
-          id="confirmaSenha"
-          type="password"
-          name="confirmPassword"
-          formControlName="confirmPassword"
-          placeholder="Confirme a senha"
-          class="w-full border border-gray-300 rounded-md p-2"
-        />
+        <p-floatlabel variant="on">
+          <input
+            pInputText
+            id="confirmPassword"
+            type="password"
+            name="confirmPassword"
+            formControlName="confirmPassword"
+            class="w-full border border-gray-300 rounded-md p-2"
+          />
+          <label for="confirmPassword">Confirmar senha</label>
+        </p-floatlabel>
       </div>
 
       <!-- Botão -->
