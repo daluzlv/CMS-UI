@@ -29,6 +29,12 @@ export class LayoutComponent implements OnInit, OnDestroy {
       routerLink: '/login',
     },
     {
+      label: 'Postar no Blog',
+      icon: 'pi pi-pencil',
+      routerLink: '/post',
+      visible: false,
+    },
+    {
       label: 'Atualizar usuário',
       icon: 'pi pi-user',
       routerLink: '/user-update',
@@ -43,9 +49,11 @@ export class LayoutComponent implements OnInit, OnDestroy {
       if (info) {
         this.menuItems[1].visible = false;
         this.menuItems[2].visible = true;
+        this.menuItems[3].visible = true;
       } else {
         this.menuItems[1].visible = true;
         this.menuItems[2].visible = false;
+        this.menuItems[3].visible = false;
       }
     });
   }
@@ -58,9 +66,11 @@ export class LayoutComponent implements OnInit, OnDestroy {
     if (info) {
       this.menuItems[1].visible = false;
       this.menuItems[2].visible = true;
+      this.menuItems[3].visible = true;
     } else {
       this.menuItems[1].visible = true;
       this.menuItems[2].visible = false;
+      this.menuItems[3].visible = false;
     }
   }
 
