@@ -7,5 +7,6 @@ export interface Post {
   bannerUrl: string;
   content: string;
   createdAt: Date;
+  userId: string;
   comments: PostComment[];
 }

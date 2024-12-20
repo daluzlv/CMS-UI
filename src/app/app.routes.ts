@@ -20,5 +20,6 @@ export const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'post', component: PostBlogComponent, canActivate: [AuthGuard] },
   { path: 'post/:id', component: PostComponent },
+  { path: 'post/:id/edit', component: PostBlogComponent, canActivate: [AuthGuard] },
   { path: '**', redirectTo: 'home' },
 ];

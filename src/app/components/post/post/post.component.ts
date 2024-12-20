@@ -6,8 +6,8 @@ import {
   Validators,
 } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, RouterLink } from '@angular/router';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 
 import { CardModule } from 'primeng/card';
@@ -27,12 +27,14 @@ import { formatBrDate } from '../../../utils/date';
   standalone: true,
   templateUrl: './post.component.html',
   styleUrls: ['./post.component.css'],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   imports: [
     CommonModule,
     CardModule,
     InputTextModule,
     FormsModule,
     ButtonModule,
+    RouterLink,
     ReactiveFormsModule,
   ],
 })
@@ -44,11 +46,14 @@ export class PostComponent implements OnInit {
     fullName: '',
     id: '',
     title: '',
+    userId: '',
     comments: [],
   };
 
   id: string = '';
+
   newCommentForm: FormGroup;
+  isEditable: boolean = false;
 
   constructor(
     private authService: AuthService,
@@ -72,6 +77,8 @@ export class PostComponent implements OnInit {
 
   isLogged = (): boolean => this.authService.isLoggedIn();
 
+  editLink = () => `/post/${this.id}/edit`;
+
   inputCommentPlaceholder() {
     return this.isLogged()
       ? 'Digite seu comentário...'
@@ -82,6 +89,7 @@ export class PostComponent implements OnInit {
     this.postService.getById(this.id).subscribe({
       next: (response: Post) => {
         this.post = response;
+        this.isEditable = this.postService.canEdit(this.post.userId);
       },
       error: (error: HttpErrorResponse) => {
         this.messageService.add({

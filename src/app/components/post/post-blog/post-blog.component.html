@@ -91,12 +91,12 @@
         </span>
       </div>
 
-      <!-- Botão -->
       <p-button
         type="submit"
         label="Postar"
         severity="primary"
         class="w-full p-button-rounded"
+        [disabled]="!postForm.valid"
       ></p-button>
     </form>
   </div>
