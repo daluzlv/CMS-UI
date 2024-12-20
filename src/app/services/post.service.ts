@@ -39,7 +39,7 @@ export class PostService {
     });
   }
 
-  canEdit(postUserId: string) {
+  canEdit(postUserId: string): boolean {
     const user = this.authService.getDecodedToken();
     return user?.sub === postUserId;
   }

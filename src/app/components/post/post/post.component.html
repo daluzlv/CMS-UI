@@ -13,9 +13,9 @@
       <div class="flex justify-between">
         <h2 class="text-2xl font-bold mb-2">{{ post.title }}</h2>
         <p-button
-          type="button"
+          [text]="true"
+          [rounded]="true"
           icon="pi pi-pencil"
-          styleClass="p-button-rounded"
           severity="secondary"
           [routerLink]="editLink()"
           *ngIf="isEditable"
@@ -61,11 +61,12 @@
         <div *ngIf="post?.comments?.length === 0" class="text-gray-500">
           Nenhum comentário ainda. Seja o primeiro!
         </div>
-        <div *ngFor="let comment of post?.comments" class="mb-3 border-b pb-2">
-          <p class="text-gray-800">
-            <strong>{{ comment.fullName }}</strong
-            >: {{ comment.content }}
-          </p>
+        <div class="flex flex-col gap-3 align-center">
+          <app-post-comment-edit
+            *ngFor="let comment of post.comments"
+            [comment]="comment"
+          >
+          </app-post-comment-edit>
         </div>
       </div>
     </div>

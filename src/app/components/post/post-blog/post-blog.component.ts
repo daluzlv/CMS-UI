@@ -1,17 +1,17 @@
-import { ActivatedRoute, Router } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpErrorResponse } from '@angular/common/http';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { InputText } from 'primeng/inputtext';
 import { Button } from 'primeng/button';
-import { TextareaModule } from 'primeng/textarea';
 import { MessageService } from 'primeng/api';
+import { InputText } from 'primeng/inputtext';
 import { FloatLabel } from 'primeng/floatlabel';
+import { TextareaModule } from 'primeng/textarea';
 
 import { PostService } from '../../../services/post.service';
-import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-post-blog',
@@ -58,7 +58,6 @@ export class PostBlogComponent implements OnInit {
   getPost(id: string) {
     this.postService.getById(id).subscribe({
       next: (response) => {
-        debugger
         this.postForm.controls['title'].setValue(response.title ?? '');
         this.postForm.controls['content'].setValue(response.content ?? '');
         this.postForm.controls['bannerUrl'].setValue(response.bannerUrl ?? '');

@@ -3,4 +3,5 @@ export interface PostComment {
   content: string;
   createdAt: Date;
   fullName: string;
+  userId: string;
 }

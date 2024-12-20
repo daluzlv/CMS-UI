@@ -20,6 +20,8 @@ import { PostService } from '../../../services/post.service';
 
 import { Post } from '../../../models/post.model';
 
+import { PostCommentEditComponent } from "../post-comment-edit/post-comment-edit.component";
+
 import { formatBrDate } from '../../../utils/date';
 
 @Component({
@@ -36,7 +38,8 @@ import { formatBrDate } from '../../../utils/date';
     ButtonModule,
     RouterLink,
     ReactiveFormsModule,
-  ],
+    PostCommentEditComponent
+],
 })
 export class PostComponent implements OnInit {
   post: Post = {

@@ -1,0 +1,53 @@
+<div
+  class="flex gap-2 items-center justify-between"
+  *ngIf="!isEditing; else editForm"
+>
+  <p class="text-gray-800">
+    <strong>{{ comment.fullName }}</strong
+    >: {{ comment.content }}
+  </p>
+  <p-button
+    [text]="true"
+    [rounded]="true"
+    icon="pi pi-pencil"
+    severity="secondary"
+    (onClick)="edit()"
+    *ngIf="isEditable"
+  ></p-button>
+</div>
+
+<ng-template #editForm>
+  <div class="flex justify-between items-center gap-2">
+    <p class="text-gray-800">
+      <strong>{{ comment.fullName }}:</strong>
+    </p>
+    <p-button
+      [text]="true"
+      [rounded]="true"
+      icon="pi pi-times"
+      severity="danger"
+      (onClick)="cancel()"
+    ></p-button>
+  </div>
+  <form class="flex gap-2 mt-2" [formGroup]="commentForm">
+    <input
+      type="text"
+      pInputText
+      name="content"
+      [disabled]="!isLogged()"
+      formControlName="content"
+      class="p-inputtext p-component w-full"
+      [placeholder]="inputCommentPlaceholder()"
+    />
+    <p-button
+      type="button"
+      label="Atualizar"
+      severity="info"
+      class="p-button-outlined"
+      [disabled]="!isLogged() || !commentForm.valid"
+      (onClick)="updateComment()"
+    ></p-button>
+  </form>
+</ng-template>
+
+<p-divider></p-divider>

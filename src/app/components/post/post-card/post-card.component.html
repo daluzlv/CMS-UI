@@ -12,9 +12,9 @@
     <div class="flex justify-between">
       <h2 class="text-2xl font-bold mb-2">{{ post.title }}</h2>
       <p-button
-        type="button"
+        [text]="true"
+        [rounded]="true"
         icon="pi pi-pencil"
-        styleClass="p-button-rounded"
         severity="secondary"
         [routerLink]="editLink()"
         *ngIf="isEditable"
