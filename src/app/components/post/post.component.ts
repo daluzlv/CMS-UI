@@ -1,6 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 
@@ -10,9 +16,10 @@ import { ButtonModule } from 'primeng/button';
 import { MessageService } from 'primeng/api';
 
 import { Post } from '../../models/post.model';
-import { PostComment } from '../../models/comment.model';
 import { AuthService } from '../../services/auth.service';
 import { PostService } from '../../services/post.service';
+
+import { formatBrDate } from '../../utils/date';
 
 @Component({
   selector: 'app-post',
@@ -25,6 +32,7 @@ import { PostService } from '../../services/post.service';
     InputTextModule,
     FormsModule,
     ButtonModule,
+    ReactiveFormsModule,
   ],
 })
 export class PostComponent implements OnInit {
@@ -35,34 +43,30 @@ export class PostComponent implements OnInit {
     fullName: '',
     id: '',
     title: '',
+    comments: [],
   };
 
-  comments: PostComment[] = [
-    {
-      content: 'xyz',
-      createdAt: new Date(),
-      fullName: 'xyz',
-      id: 'xyz',
-    },
-    {
-      content: 'xyz',
-      createdAt: new Date(),
-      fullName: 'xyz',
-      id: 'xyz',
-    },
-  ];
-  newComment: string = '';
+  id: string = '';
+  newCommentForm: FormGroup;
 
   constructor(
     private authService: AuthService,
     private activatedRoute: ActivatedRoute,
     private messageService: MessageService,
-    private postService: PostService
-  ) {}
+    private postService: PostService,
+    private fb: FormBuilder
+  ) {
+    this.newCommentForm = this.fb.group({
+      comment: ['', [Validators.required]],
+    });
+  }
 
   ngOnInit(): void {
-    let id = this.activatedRoute.snapshot.paramMap.get('id');
-    if (!!id) this.getPost(id!);
+    let tempId = this.activatedRoute.snapshot.paramMap.get('id');
+    if (!!tempId) {
+      this.id = tempId;
+      this.getPost();
+    }
   }
 
   isLogged = (): boolean => this.authService.isLoggedIn();
@@ -73,8 +77,8 @@ export class PostComponent implements OnInit {
       : 'É necessário logar para deixar um comentário...';
   }
 
-  getPost(id: string) {
-    this.postService.getById(id).subscribe({
+  getPost() {
+    this.postService.getById(this.id).subscribe({
       next: (response: Post) => {
         this.post = response;
       },
@@ -87,5 +91,28 @@ export class PostComponent implements OnInit {
         console.error('Erro:', error);
       },
     });
+  }
+
+  formatDate = (date: Date) => formatBrDate(new Date(date));
+
+  comment() {
+    if (this.newCommentForm.valid) {
+      this.postService
+        .postComment(this.id, this.newCommentForm.controls['comment'].value)
+        .subscribe({
+          next: () => {
+            this.newCommentForm.reset();
+            this.getPost();
+          },
+          error: (error: HttpErrorResponse) => {
+            this.messageService.add({
+              severity: 'error',
+              summary: 'Erro',
+              detail: 'Erro ao persistir comentário.',
+            });
+            console.error('Erro:', error);
+          },
+        });
+    }
   }
 }

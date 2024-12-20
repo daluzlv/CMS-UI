@@ -46,7 +46,6 @@ export class UserFullnameUpdateComponent {
   }
 
   onSubmit() {
-    debugger;
     const token = this.authService.getDecodedToken();
 
     if (!!token) {
@@ -59,7 +58,7 @@ export class UserFullnameUpdateComponent {
 
     if (this.updateUserNameForm.valid && !!token) {
       this.userService.updateFullName(this.user).subscribe({
-        next: (response: User) => {
+        next: () => {
           this.updateUserNameForm.reset();
 
           this.messageService.add({
@@ -76,6 +75,8 @@ export class UserFullnameUpdateComponent {
             summary: 'Erro',
             detail: 'Erro ao atualizar nome.',
           });
+
+          console.error(error);
         },
       });
     } else {

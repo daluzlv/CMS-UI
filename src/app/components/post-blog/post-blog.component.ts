@@ -46,9 +46,7 @@ export class PostBlogComponent {
     if (this.postForm.valid) {
       this.postService.post(this.postForm.value).subscribe({
         next: (response) => {
-          console.log('Resposta do servidor:', response);
           this.postForm.reset();
-
           this.router.navigate(['post', response.id]);
         },
         error: (error) => {

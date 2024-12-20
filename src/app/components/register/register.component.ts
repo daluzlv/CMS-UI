@@ -21,7 +21,14 @@ import { AuthService } from '../../services/auth.service';
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [CommonModule, FloatLabel, InputText, Button, ReactiveFormsModule, Tooltip],
+  imports: [
+    CommonModule,
+    FloatLabel,
+    InputText,
+    Button,
+    ReactiveFormsModule,
+    Tooltip,
+  ],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css',
 })
@@ -46,14 +53,13 @@ export class RegisterComponent {
   }
 
   onSubmit() {
-    debugger;
     if (
       this.registerForm.valid &&
       this.registerForm.controls['password'].value ===
         this.registerForm.controls['confirmPassword'].value
     ) {
       this.authService.register(this.registerForm.value).subscribe({
-        next: (response) => {
+        next: () => {
           this.messageService.add({
             severity: 'success',
             summary: 'Sucesso',
@@ -73,7 +79,6 @@ export class RegisterComponent {
         },
       });
     } else {
-      console.log(this.registerForm.errors);
       this.errorMessage = 'Por favor, preencha todos os campos corretamente.';
     }
   }

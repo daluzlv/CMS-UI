@@ -4,9 +4,8 @@ import { Observable } from 'rxjs';
 
 import { environment } from '../../environments/environment';
 
-import { AuthService } from './auth.service';
-
 import { Post } from '../models/post.model';
+import { PostComment } from '../models/comment.model';
 
 @Injectable({
   providedIn: 'root',
@@ -14,7 +13,7 @@ import { Post } from '../models/post.model';
 export class PostService {
   private baseUrl = `${environment.apiUrl}/post`;
 
-  constructor(private http: HttpClient, private authService: AuthService) {}
+  constructor(private http: HttpClient) {}
 
   get(): Observable<Post[]> {
     return this.http.get<Post[]>(`${this.baseUrl}`);
@@ -26,5 +25,11 @@ export class PostService {
 
   post(post: Post): Observable<Post> {
     return this.http.post<Post>(`${this.baseUrl}`, post);
+  }
+
+  postComment(postId: string, comment: string): Observable<PostComment> {
+    return this.http.post<PostComment>(`${this.baseUrl}/${postId}/comment`, {
+      content: comment,
+    });
   }
 }

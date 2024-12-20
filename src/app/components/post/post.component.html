@@ -16,40 +16,43 @@
           <i class="pi pi-user mr-2"></i> {{ post.fullName }}
         </span>
         <span class="flex items-center">
-          <i class="pi pi-calendar mr-2"></i> {{ post.createdAt }}
+          <i class="pi pi-calendar mr-2"></i> {{ formatDate(post.createdAt) }}
         </span>
       </div>
       <p class="text-gray-700 leading-relaxed mb-6">
         {{ post.content }}
       </p>
 
-      <!-- Input para enviar comentários -->
       <div class="mt-4">
         <h3 class="text-xl font-semibold mb-2">Deixe um comentário:</h3>
-        <div class="flex gap-2">
+        <form class="flex gap-2" [formGroup]="newCommentForm">
           <input
             type="text"
             pInputText
-            class="p-inputtext p-component w-full"
+            name="comment"
             [disabled]="!isLogged()"
-            [(ngModel)]="newComment"
+            formControlName="comment"
+            class="p-inputtext p-component w-full"
             [placeholder]="inputCommentPlaceholder()"
           />
           <p-button
             type="button"
             label="Enviar"
+            severity="info"
             class="p-button-outlined"
+            [disabled]="!isLogged() || !newCommentForm.valid"
+            (onClick)="comment()"
           ></p-button>
-        </div>
+        </form>
       </div>
 
       <!-- Listagem de comentários -->
       <div class="mt-6">
         <h3 class="text-xl font-semibold mb-2">Comentários:</h3>
-        <div *ngIf="comments.length === 0" class="text-gray-500">
+        <div *ngIf="post?.comments?.length === 0" class="text-gray-500">
           Nenhum comentário ainda. Seja o primeiro!
         </div>
-        <div *ngFor="let comment of comments" class="mb-3 border-b pb-2">
+        <div *ngFor="let comment of post?.comments" class="mb-3 border-b pb-2">
           <p class="text-gray-800">
             <strong>{{ comment.fullName }}</strong
             >: {{ comment.content }}

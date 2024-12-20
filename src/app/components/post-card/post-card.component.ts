@@ -5,6 +5,8 @@ import { CardModule } from 'primeng/card';
 
 import { Post } from '../../models/post.model';
 
+import { formatBrDate } from '../../utils/date';
+
 @Component({
   selector: 'app-post-card',
   standalone: true,
@@ -16,7 +18,5 @@ export class PostCardComponent {
   @Input() post!: Post;
   @Input() imageUrl!: string;
 
-  formattedDate(): string {
-    return new Date(this.post.createdAt).toLocaleDateString('pt-BR');
-  }
+  formatDate = () => formatBrDate(new Date(this.post.createdAt));
 }

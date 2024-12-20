@@ -1,6 +1,4 @@
 export const formatBrDate = (date: Date) => {
-  debugger;
-
   let day = date.getDate();
   let month = brMonth(date.getMonth() + 1);
   let year = date.getFullYear();
