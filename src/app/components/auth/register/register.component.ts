@@ -66,7 +66,7 @@ export class RegisterComponent {
             detail: 'Usuário cadastrado com sucesso.',
           });
 
-          this.router.navigate(['/login']);
+          this.router.navigate(['/login'], { queryParams: { emailVerified: false } });
         },
         error: (error) => {
           this.messageService.add({

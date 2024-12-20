@@ -2,6 +2,13 @@
   <div class="w-full max-w-sm bg-white p-6 rounded-lg shadow-md">
     <h2 class="text-2xl font-bold text-center mb-6 text-gray-700">Login</h2>
 
+    <div
+      *ngIf="!emailVerified"
+      class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 mb-6 rounded"
+    >
+      <p>Sua conta foi criada com sucesso! Verifique seu e-mail para confirmar a criação da conta.</p>
+    </div>
+
     <form (ngSubmit)="onSubmit()">
       <div class="mb-4">
         <p-floatlabel variant="on">

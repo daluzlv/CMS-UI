@@ -1,5 +1,5 @@
-import { Router } from '@angular/router';
-import { Component } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -21,17 +21,25 @@ import { Token } from '../../../models/token.model';
   templateUrl: './login.component.html',
   styles: [],
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
   email: string = '';
   password: string = '';
   errorMessage: string = '';
   successMessage: string = '';
+  emailVerified: boolean = true;
 
   constructor(
+    private router: Router,
     private authService: AuthService,
     private messageService: MessageService,
-    private router: Router
+    private activatedRoute: ActivatedRoute
   ) {}
+
+  ngOnInit(): void {
+    this.activatedRoute.queryParams.subscribe((params) => {
+      this.emailVerified = !params['emailVerified'] || params['emailVerified'] === 'true';
+    });
+  }
 
   onSubmit() {
     this.authService.login(this.email, this.password).subscribe({
