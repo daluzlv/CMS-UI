@@ -1,5 +1,5 @@
 import { Router } from '@angular/router';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -22,11 +22,11 @@ import { User } from '../../../models/user.model';
   templateUrl: './user-fullname-update.component.html',
   styleUrls: ['./user-fullname-update.component.css'],
 })
-export class UserFullnameUpdateComponent {
+export class UserFullnameUpdateComponent implements OnInit {
   user: User = {
     id: '',
     email: '',
-    fullname: '',
+    fullName: '',
   };
 
   updateUserNameForm: FormGroup;
@@ -45,18 +45,45 @@ export class UserFullnameUpdateComponent {
     });
   }
 
-  onSubmit() {
+  ngOnInit(): void {
     const token = this.authService.getDecodedToken();
+    this.user = {
+      id: token?.sub ?? '',
+      email: token?.email ?? '',
+      fullName: '',
+    };
 
-    if (!!token) {
-      this.user = {
-        id: token.sub!,
-        email: token.email,
-        fullname: this.updateUserNameForm.controls['fullName'].value,
-      };
-    }
+    this.userService.getById(token?.sub!).subscribe({
+      next: (response: User) => {
+        if (!!response) {
+          this.user = response;
+          this.updateUserNameForm.controls['fullName'].setValue(
+            this.user.fullName
+          );
+        } else {
+          this.user = {
+            id: token?.sub ?? '',
+            email: token?.email ?? '',
+            fullName: '',
+          };
+        }
+      },
+      error: (error: HttpErrorResponse) => {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Erro',
+          detail: 'Erro ao buscar nome.',
+        });
 
-    if (this.updateUserNameForm.valid && !!token) {
+        console.error(error);
+      },
+    });
+  }
+
+  onSubmit() {
+    this.user.fullName = this.updateUserNameForm.controls['fullName'].value;
+
+    if (this.updateUserNameForm.valid) {
       this.userService.updateFullName(this.user).subscribe({
         next: () => {
           this.updateUserNameForm.reset();

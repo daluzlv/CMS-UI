@@ -54,10 +54,14 @@ export class PostCommentEditComponent implements OnInit {
 
   isLogged = (): boolean => this.authService.isLoggedIn();
 
-  inputCommentPlaceholder(): string {
-    return this.isLogged()
-      ? 'Digite seu comentário...'
-      : 'É necessário logar para deixar um comentário...';
+  inputCommentPlaceholder() {
+    const isLogged = this.isLogged();
+    if (isLogged) {
+      return 'Digite seu comentário...';
+    }
+
+    this.commentForm.controls['content'].disable();
+    return 'É necessário logar para deixar um comentário...';
   }
 
   edit(): void {

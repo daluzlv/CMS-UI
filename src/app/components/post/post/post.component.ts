@@ -20,7 +20,7 @@ import { PostService } from '../../../services/post.service';
 
 import { Post } from '../../../models/post.model';
 
-import { PostCommentEditComponent } from "../post-comment-edit/post-comment-edit.component";
+import { PostCommentEditComponent } from '../post-comment-edit/post-comment-edit.component';
 
 import { formatBrDate } from '../../../utils/date';
 
@@ -38,8 +38,8 @@ import { formatBrDate } from '../../../utils/date';
     ButtonModule,
     RouterLink,
     ReactiveFormsModule,
-    PostCommentEditComponent
-],
+    PostCommentEditComponent,
+  ],
 })
 export class PostComponent implements OnInit {
   post: Post = {
@@ -78,14 +78,18 @@ export class PostComponent implements OnInit {
     }
   }
 
-  isLogged = (): boolean => this.authService.isLoggedIn();
+  isLoggedIn = (): boolean => this.authService.isLoggedIn();
 
   editLink = () => `/post/${this.id}/edit`;
 
   inputCommentPlaceholder() {
-    return this.isLogged()
-      ? 'Digite seu comentário...'
-      : 'É necessário logar para deixar um comentário...';
+    const isLogged = this.isLoggedIn();
+    if (isLogged) {
+      return 'Digite seu comentário...';
+    }
+
+    this.newCommentForm.controls['comment'].disable();
+    return 'É necessário logar para deixar um comentário...';
   }
 
   getPost() {

@@ -40,7 +40,6 @@
             type="text"
             pInputText
             name="comment"
-            [disabled]="!isLogged()"
             formControlName="comment"
             class="p-inputtext p-component w-full"
             [placeholder]="inputCommentPlaceholder()"
@@ -50,7 +49,7 @@
             label="Enviar"
             severity="info"
             class="p-button-outlined"
-            [disabled]="!isLogged() || !newCommentForm.valid"
+            [disabled]="!isLoggedIn() || !newCommentForm.valid"
             (onClick)="comment()"
           ></p-button>
         </form>

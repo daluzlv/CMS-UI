@@ -18,8 +18,12 @@ export class UserService {
 
   updateFullName(user: User): Observable<User> {
     const decodedToken = this.authService.getDecodedToken();
-    if (!decodedToken) return new Observable;
+    if (!decodedToken) return new Observable();
 
     return this.http.put<User>(`${this.baseUrl}/${decodedToken.sub}`, user);
+  }
+
+  getById(id: string): Observable<User> {
+    return this.http.get<User>(`${this.baseUrl}/${id}`);
   }
 }
