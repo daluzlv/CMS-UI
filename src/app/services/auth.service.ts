@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { Observable, Subject } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 import { jwtDecode } from 'jwt-decode';
 
 import { environment } from '../../environments/environment';
 
-import { DecodedToken, Token } from '../models/token.model';
 import { Register } from '../models/register.model';
+import { DecodedToken, Token } from '../models/token.model';
 
 @Injectable({
   providedIn: 'root',

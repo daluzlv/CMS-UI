@@ -1,17 +1,18 @@
+import { Router } from '@angular/router';
 import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
 
-import { InputText } from 'primeng/inputtext';
-import { FloatLabel } from 'primeng/floatlabel';
 import { Button } from 'primeng/button';
 import { MessageService } from 'primeng/api';
+import { InputText } from 'primeng/inputtext';
+import { FloatLabel } from 'primeng/floatlabel';
 import { DividerModule } from 'primeng/divider';
 
-import { AuthService } from '../../services/auth.service';
-import { Token } from '../../models/token.model';
-import { Router } from '@angular/router';
+import { AuthService } from '../../../services/auth.service';
+
+import { Token } from '../../../models/token.model';
 
 @Component({
   selector: 'app-login',

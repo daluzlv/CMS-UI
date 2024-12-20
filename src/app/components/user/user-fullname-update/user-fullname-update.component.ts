@@ -1,19 +1,19 @@
+import { Router } from '@angular/router';
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { HttpErrorResponse } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+import { HttpErrorResponse } from '@angular/common/http';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { Button } from 'primeng/button';
-import { InputText } from 'primeng/inputtext';
 import { MessageService } from 'primeng/api';
+import { InputText } from 'primeng/inputtext';
 import { FloatLabel } from 'primeng/floatlabel';
 
-import { UserService } from '../../services/user.service';
-import { AuthService } from '../../services/auth.service';
+import { UserService } from '../../../services/user.service';
+import { AuthService } from '../../../services/auth.service';
 
-import { User } from '../../models/user.model';
+import { User } from '../../../models/user.model';
 
 @Component({
   selector: 'app-update-fullname',

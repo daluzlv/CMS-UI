@@ -1,5 +1,3 @@
-import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import {
   AbstractControl,
   FormBuilder,
@@ -9,6 +7,8 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 import { Button } from 'primeng/button';
 import { Tooltip } from 'primeng/tooltip';
@@ -16,7 +16,7 @@ import { InputText } from 'primeng/inputtext';
 import { MessageService } from 'primeng/api';
 import { FloatLabel } from 'primeng/floatlabel';
 
-import { AuthService } from '../../services/auth.service';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-register',

@@ -10,7 +10,7 @@ import { TextareaModule } from 'primeng/textarea';
 import { MessageService } from 'primeng/api';
 import { FloatLabel } from 'primeng/floatlabel';
 
-import { PostService } from '../../services/post.service';
+import { PostService } from '../../../services/post.service';
 
 @Component({
   selector: 'app-post-blog',

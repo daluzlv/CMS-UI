@@ -1,15 +1,16 @@
-import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 
 import { MessageService } from 'primeng/api';
 
 import { AuthService } from '../../services/auth.service';
-
-import { PostCardComponent } from '../post-card/post-card.component';
 import { PostService } from '../../services/post.service';
+
 import { Post } from '../../models/post.model';
+
+import { PostCardComponent } from '../post/post-card/post-card.component';
 
 @Component({
   selector: 'app-home',

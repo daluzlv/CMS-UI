@@ -1,11 +1,11 @@
-import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component, Input } from '@angular/core';
 
 import { CardModule } from 'primeng/card';
 
-import { Post } from '../../models/post.model';
+import { Post } from '../../../models/post.model';
 
-import { formatBrDate } from '../../utils/date';
+import { formatBrDate } from '../../../utils/date';
 
 @Component({
   selector: 'app-post-card',

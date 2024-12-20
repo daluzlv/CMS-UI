@@ -1,5 +1,3 @@
-import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import {
   FormBuilder,
   FormGroup,
@@ -7,19 +5,22 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 
 import { CardModule } from 'primeng/card';
-import { InputTextModule } from 'primeng/inputtext';
-import { ButtonModule } from 'primeng/button';
 import { MessageService } from 'primeng/api';
+import { ButtonModule } from 'primeng/button';
+import { InputTextModule } from 'primeng/inputtext';
 
-import { Post } from '../../models/post.model';
-import { AuthService } from '../../services/auth.service';
-import { PostService } from '../../services/post.service';
+import { AuthService } from '../../../services/auth.service';
+import { PostService } from '../../../services/post.service';
 
-import { formatBrDate } from '../../utils/date';
+import { Post } from '../../../models/post.model';
+
+import { formatBrDate } from '../../../utils/date';
 
 @Component({
   selector: 'app-post',
