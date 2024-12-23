@@ -1,6 +1,7 @@
 {
   "/api": {
     "target": "https://022a-177-55-225-203.ngrok-free.app",
-    "secure": false
+    "secure": false,
+    "changeOrigin": true
   }
 }
