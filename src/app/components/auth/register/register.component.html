@@ -8,6 +8,39 @@
         <p-floatlabel variant="on">
           <input
             pInputText
+            id="fullname"
+            type="fullname"
+            class="w-full border border-gray-300 rounded-md p-2"
+            name="fullname"
+            formControlName="fullname"
+            required
+          />
+          <label for="email">Nome completo</label>
+        </p-floatlabel>
+
+        <span
+          *ngIf="
+            hasError('fullname', 'required') &&
+            registerForm.controls['fullname'].touched
+          "
+          class="text-red-600 text-sm"
+        >
+          Nome é obrigatório.
+        </span>
+        <span
+          *ngIf="
+            hasError('fullname', 'minlength') &&
+            registerForm.controls['fullname'].touched
+          "
+          class="text-red-600 text-sm"
+        >
+          Nome ter no mínimo 3 caracteres.
+        </span>
+      </div>
+      <div class="mb-4">
+        <p-floatlabel variant="on">
+          <input
+            pInputText
             id="email"
             type="email"
             class="w-full border border-gray-300 rounded-md p-2"

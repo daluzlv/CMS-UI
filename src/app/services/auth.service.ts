@@ -48,9 +48,15 @@ export class AuthService {
   }
 
   register(registerData: Register): Observable<any> {
-    const url = `${this.baseUrl}/auth/register`;
+    const url = `${this.baseUrl}/authentication/register`;
 
     return this.http.post<any>(url, registerData);
+  }
+
+  confirmEmail(userId: string, token: string) {
+    const url = `${this.baseUrl}/authentication/confirm-email?userId=${userId}&token=${encodeURIComponent(token)}`;
+
+    return this.http.get<any>(url)
   }
 
   getDecodedToken(): DecodedToken | null {
