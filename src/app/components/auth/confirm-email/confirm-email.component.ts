@@ -25,7 +25,6 @@ export class ConfirmEmailComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    debugger;
     this.activatedRoute.queryParams.subscribe((params) => {
       this.userId = params['userId'];
       this.token = params['token'];
