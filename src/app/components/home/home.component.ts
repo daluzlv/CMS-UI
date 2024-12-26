@@ -1,6 +1,6 @@
-import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { Router, RouterLink } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 
 import { MessageService } from 'primeng/api';
@@ -15,7 +15,7 @@ import { PostCardComponent } from '../post/post-card/post-card.component';
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, PostCardComponent],
+  imports: [CommonModule, PostCardComponent, RouterLink],
   templateUrl: './home.component.html',
   styles: [],
   providers: [MessageService, AuthService, PostService],
@@ -31,7 +31,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.postService.get().subscribe({
-      next: (response: Post[]) => {        
+      next: (response: Post[]) => {
         this.postList = response;
       },
       error: (error: HttpErrorResponse) => {
